@@ -1,0 +1,6 @@
+what is data association?
+
+In data association we pass the data from one model to another model by using their IDs that means if the user post something in the first data model so by using the their id we pass that data to the second model and vice varsa.
+
+simple when two models are closely relate we join them by their IDs 
+
