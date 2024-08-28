@@ -3,15 +3,38 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const expressSession = require("express-session");
+const flash = require("connect-flash");
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const passport = require('passport');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+
+app.use(flash());
+app.use(expressSession({
+  resave: false,
+  saveUninitialized: false,
+  secret: "NamanHello"
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser(usersRouter.serializeUser());//this function is used to determine what data of the user should be stored in the database server
+//it is basically responsible for the data that has to be stored in the session as passport store some data od the user while authentication
+
+passport.deserializeUser(usersRouter.deserializeUser());//this is reposible for fetching the user data from the database 
+//this works like it uses the data store in the session and then by using that data it fetch the whole object from the server related to the user
+
 
 app.use(logger('dev'));
 app.use(express.json());

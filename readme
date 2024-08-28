@@ -4,3 +4,8 @@ In data association we pass the data from one model to another model by using th
 
 simple when two models are closely relate we join them by their IDs 
 
+
+//WHAT WE ARE CREATING IS THE BACKEND FOR THE PINTEREST BUT FOR THE FRONTEND I AM GONNA USE THE AI AND CODE PEN OR SIMPLE SURFING 
+
+1. we are going to setup the passport for the authentication and autherization 
+

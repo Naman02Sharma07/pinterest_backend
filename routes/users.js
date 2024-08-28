@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const plm = require("passport-local-mongoose");
 mongoose.connect("mongodb://127.0.0.1:27017/Pinterest")
 
 const userSchema  = mongoose.Schema({
@@ -9,9 +9,8 @@ const userSchema  = mongoose.Schema({
     unique: true//this means every data that we gonna post hsould beunique 
   },
   password:{
-    type: String,
-    required: true,
-  },
+    type: String
+    },
   posts: [{
     type: mongoose.Schema.Types.ObjectId,//out post will be the array of ids
     ref: 'Post',//it is pointing it this model
@@ -26,5 +25,7 @@ const userSchema  = mongoose.Schema({
     required : true,
   }
 })
+
+userSchema.plugin(plm);
 
 module.exports = mongoose.model("User",userSchema);
